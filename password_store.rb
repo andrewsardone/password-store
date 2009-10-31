@@ -1,7 +1,4 @@
-require 'rubygems'
-require 'sinatra'
-require 'dm-core'
-require 'dm-timestamps'
+%w(rubygems sinatra dm-core dm-timestamps).each { |lib| require lib }
 
 configure :development do 
   DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/development.db")
