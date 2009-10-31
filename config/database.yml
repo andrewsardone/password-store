@@ -1,0 +1,25 @@
+# This is where you'll set up your database configuration based on
+# your environment. Include the following snippet of code to set up
+# a configure block within your sinatra app.
+#
+#require 'yaml'
+# configure { @config = YAML.load_file('config/database.yml') }
+# 
+# configure :development do
+#   @path = @config['development']['path']
+#   @file = @config['development']['filename']
+# end
+# 
+# configure :production do
+#   @path = @config['production']['path']
+#   @file = @config['production']['filename']
+# end
+# configure { DataMapper::setup(:default, "sqlite3://#{@path}/#{@file}") }
+
+development:
+  path: /
+  filename: development.db
+
+production:
+  path: /
+  filename: production.db
