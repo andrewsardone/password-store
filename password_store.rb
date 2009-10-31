@@ -7,6 +7,7 @@ end
 # DataMapper doesn't do Single Table Inheritance (STI) like ActiveRecord
 # does. Instead, create a module with class evaluated property declarations
 # and include it within your model classes.
+# http://wiki.github.com/sam/dm-core/simulating-polymorphic-associations
 module Account
   def self.included(other)
     other.class_eval <<-EOS
