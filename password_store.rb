@@ -81,3 +81,54 @@ helpers do
     params[:callback] ? "#{params[:callback]}(#{body});" : body.to_json
   end
 end
+
+get '/' do
+  @title = 'Password Store'
+  haml :index
+end
+
+get '/weblogins' do
+  @title = 'Web Logins'
+  @web_logins = WebLogin.all :order => [:created_at.desc]
+  haml :list
+end
+
+get '/weblogins.json' do
+  @web_logins = WebLogin.all :order => [:created_at.desc]
+  json @web_logins
+end
+
+post '/weblogins/create.json' do
+  if params[:web_login].nil?
+    status 406
+    return
+  end
+  @web_login = WebLogin.new params[:web_login]
+  if @web_login.save
+    status 201
+    json @web_login
+  else
+    status 500
+  end
+end
+
+__END__
+
+@@ layout
+!!! 1.1
+%html
+  %head
+    %title= @title
+  %body
+    = yield
+
+@@ index
+%h1= @title
+
+@@ list
+%h1= @title
+- @web_logins.each do |wl|
+  - wl.attributes.each do |k,v|
+    %p
+      %b= k
+      = v
