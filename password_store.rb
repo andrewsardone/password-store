@@ -72,5 +72,5 @@ end
 
 # set utf-8 for outgoing
 before do
-  headers 'Content-Type' => 'text/html; charset=utf-8'
+  headers 'Content-Type' => 'text/json; charset=utf-8'
 end
