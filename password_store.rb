@@ -65,8 +65,10 @@ class Project
   has n, :servers, :through => Resource
 end
 
-# Create or upgrade all tables at once, like magic
-DataMapper.auto_upgrade!
+configure :development do
+  # Create or upgrade all tables at once, like magic
+  DataMapper.auto_upgrade!
+end
 
 # set utf-8 for outgoing
 before do
