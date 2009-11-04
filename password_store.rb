@@ -17,15 +17,52 @@ module Account
       property :url,         String
       property :created_at,  DateTime
       property :updated_at,  DateTime
+      
+      has n, :projects, :through => Resource
     EOS
   end
+end
+
+class WebLogin
+  include DataMapper::Resource
+  include Account
+  
+end
+
+class Database
+  include DataMapper::Resource
+  include Account
+  
+  property :port, Integer
+  property :dbname, String
+  property :sid, Integer
+  
+  belongs_to :database_type
+end
+
+class DatabaseType
+  include DataMapper::Resource
+  
+  property :id,   Serial
+  property :type, String
+  
+  has n, :databases
 end
 
 class Server
   include DataMapper::Resource
   include Account
+end
+
+class Project
+  include DataMapper::Resource
   
-  property :type, String
+  property :id,   Serial
+  property :name, String
+  
+  has n, :web_logins, :through => Resource
+  has n, :databases, :through => Resource
+  has n, :servers, :through => Resource
 end
 
 # Create or upgrade all tables at once, like magic
