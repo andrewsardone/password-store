@@ -1,4 +1,6 @@
-%w(rubygems sinatra dm-core dm-timestamps).each { |lib| require lib }
+%w(rubygems sinatra dm-core dm-timestamps json).each { |lib| require lib }
+
+mime :json, 'application/json'
 
 configure :development do 
   DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/development.db")
@@ -72,5 +74,9 @@ end
 
 # set utf-8 for outgoing
 before do
-  headers 'Content-Type' => 'text/json; charset=utf-8'
+  headers 'Content-Type' => 'application/json; charset=utf-8'
+end
+
+get '/' do
+  
 end
