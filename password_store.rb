@@ -1,4 +1,4 @@
-%w(rubygems sinatra dm-core dm-serializer dm-timestamps json).each { |lib| require lib }
+%w(rubygems sinatra dm-core dm-serializer dm-timestamps haml json).each { |lib| require lib }
 
 configure :development do 
   DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/development.db")
