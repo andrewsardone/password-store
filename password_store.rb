@@ -112,6 +112,10 @@ post '/weblogins/create.json' do
   end
 end
 
+delete '/weblogins/:id' do
+  WebLogin.get(params[:id]).destroy
+end
+
 __END__
 
 @@ layout
@@ -132,3 +136,4 @@ __END__
     %p
       %b= k
       = v
+  %hr/
