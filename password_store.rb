@@ -82,9 +82,8 @@ helpers do
   end
 end
 
-get '/' do
-  @title = 'Password Store'
-  haml :index
+get '/?' do
+  erb "index.html".to_sym, :layout => false, :views => './public'
 end
 
 get '/weblogins' do
