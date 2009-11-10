@@ -83,7 +83,7 @@ helpers do
 end
 
 get '/?' do
-  erb "index.html".to_sym, :layout => false, :views => './public'
+  redirect 'index.html'
 end
 
 get '/weblogins' do
